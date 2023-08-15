@@ -1,25 +1,25 @@
 // Function to fetch forecast data
 async function fetchForecast(cityName) {
-  const apiKey = "248e30e1b319965578b944f3ea568be1"; // Replace with your actual API key
-  const response = await fetch(
+  let apiKey = "248e30e1b319965578b944f3ea568be1"; // Replace with your actual API key
+  let response = await fetch(
     `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=${apiKey}&units=metric`
   );
-  const data = await response.json();
+  let data = await response.json();
   return data;
 }
 
 // Function to populate forecast data in the forecast section
 function populateForecast(forecastData) {
-  const forecastSection = document.getElementById("forecast");
+  let forecastSection = document.getElementById("forecast");
   forecastSection.innerHTML = ""; // Clear previous forecast data
 
-  const currentDate = new Date();
-  const forecastDays = {};
+  let currentDate = new Date();
+  let forecastDays = {};
 
   // Loop through the forecast data and organize it by day
-  for (const day of forecastData.list) {
-    const forecastDate = new Date(day.dt_txt);
-    const dateKey = forecastDate.toDateString();
+  for (let day of forecastData.list) {
+    let forecastDate = new Date(day.dt_txt);
+    let dateKey = forecastDate.toDateString();
 
     if (!forecastDays[dateKey] && forecastDate >= currentDate) {
       forecastDays[dateKey] = day;
@@ -27,15 +27,15 @@ function populateForecast(forecastData) {
   }
 
   // Create weather cards for each day
-  for (const key in forecastDays) {
-    const day = forecastDays[key];
-    const card = document.createElement("div");
+  for (let key in forecastDays) {
+    let day = forecastDays[key];
+    let card = document.createElement("div");
     card.classList.add("weather-card");
 
     // Extract relevant data from the API response
-    const date = day.dt_txt;
-    const temperature = day.main.temp;
-    const weatherDescription = day.weather[0].description;
+    let date = day.dt_txt;
+    let temperature = day.main.temp;
+    let weatherDescription = day.weather[0].description;
 
     // Create the card's HTML structure
     card.innerHTML = `
@@ -54,7 +54,7 @@ document
   .getElementById("search-form")
   .addEventListener("submit", async function (event) {
     event.preventDefault();
-    const cityName = document.getElementById("search-input").value;
-    const forecastData = await fetchForecast(cityName);
+    let cityName = document.getElementById("search-input").value;
+    let forecastData = await fetchForecast(cityName);
     populateForecast(forecastData);
   });
