@@ -1,12 +1,12 @@
-const cityInput = document.querySelector(".city-input");
-const searchButton = document.querySelector(".search-btn");
-const locationButton = document.querySelector(".location-btn");
-const currentWeatherDiv = document.querySelector(".current-weather");
-const weatherCardsDiv = document.querySelector(".weather-cards");
+let cityInput = document.querySelector(".city-input");
+let searchButton = document.querySelector(".search-btn");
+let locationButton = document.querySelector(".location-btn");
+let currentWeatherDiv = document.querySelector(".current-weather");
+let weatherCardsDiv = document.querySelector(".weather-cards");
 
-const API_KEY = "248e30e1b319965578b944f3ea568be1"; // API key for OpenWeatherMap API
+let API_KEY = "248e30e1b319965578b944f3ea568be1"; // API key for OpenWeatherMap API
 
-const createWeatherCard = (cityName, weatherItem, index) => {
+let createWeatherCard = (cityName, weatherItem, index) => {
   if (index === 0) {
     // HTML for the main weather card
     return `<div class="details">
@@ -39,16 +39,16 @@ const createWeatherCard = (cityName, weatherItem, index) => {
   }
 };
 
-const getWeatherDetails = (cityName, latitude, longitude) => {
-  const WEATHER_API_URL = `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=${API_KEY}`;
+let getWeatherDetails = (cityName, latitude, longitude) => {
+  let WEATHER_API_URL = `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=${API_KEY}`;
 
   fetch(WEATHER_API_URL)
     .then((response) => response.json())
     .then((data) => {
       // Filter the forecasts to get only one forecast per day
-      const uniqueForecastDays = [];
-      const fiveDaysForecast = data.list.filter((forecast) => {
-        const forecastDate = new Date(forecast.dt_txt).getDate();
+      let uniqueForecastDays = [];
+      let fiveDaysForecast = data.list.filter((forecast) => {
+        let forecastDate = new Date(forecast.dt_txt).getDate();
         if (!uniqueForecastDays.includes(forecastDate)) {
           return uniqueForecastDays.push(forecastDate);
         }
@@ -61,7 +61,7 @@ const getWeatherDetails = (cityName, latitude, longitude) => {
 
       // Creating weather cards and adding them to the DOM
       fiveDaysForecast.forEach((weatherItem, index) => {
-        const html = createWeatherCard(cityName, weatherItem, index);
+        let html = createWeatherCard(cityName, weatherItem, index);
         if (index === 0) {
           currentWeatherDiv.insertAdjacentHTML("beforeend", html);
         } else {
@@ -74,17 +74,17 @@ const getWeatherDetails = (cityName, latitude, longitude) => {
     });
 };
 
-const getCityCoordinates = () => {
-  const cityName = cityInput.value.trim();
+let getCityCoordinates = () => {
+  let cityName = cityInput.value.trim();
   if (cityName === "") return;
-  const API_URL = `https://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=1&appid=${API_KEY}`;
+  let API_URL = `https://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=1&appid=${API_KEY}`;
 
   // Get entered city coordinates (latitude, longitude, and name) from the API response
   fetch(API_URL)
     .then((response) => response.json())
     .then((data) => {
       if (!data.length) return alert(`No coordinates found for ${cityName}`);
-      const { lat, lon, name } = data[0];
+      let { lat, lon, name } = data[0];
       getWeatherDetails(name, lat, lon);
     })
     .catch(() => {
@@ -92,16 +92,16 @@ const getCityCoordinates = () => {
     });
 };
 
-const getUserCoordinates = () => {
+let getUserCoordinates = () => {
   navigator.geolocation.getCurrentPosition(
     (position) => {
-      const { latitude, longitude } = position.coords; // Get coordinates of user location
+      let { latitude, longitude } = position.coords; // Get coordinates of user location
       // Get city name from coordinates using reverse geocoding API
-      const API_URL = `https://api.openweathermap.org/geo/1.0/reverse?lat=${latitude}&lon=${longitude}&limit=1&appid=${API_KEY}`;
+      let API_URL = `https://api.openweathermap.org/geo/1.0/reverse?lat=${latitude}&lon=${longitude}&limit=1&appid=${API_KEY}`;
       fetch(API_URL)
         .then((response) => response.json())
         .then((data) => {
-          const { name } = data[0];
+          let { name } = data[0];
           getWeatherDetails(name, latitude, longitude);
         })
         .catch(() => {
