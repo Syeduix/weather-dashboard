@@ -132,30 +132,38 @@ h1 {
   margin: 5px 0 -12px 0;
 }
 
-.input-area{
+.input-area {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100%;
+  width: 100vw;
 }
-.input-group{
+.input-group {
   display: flex !important;
   flex-direction: column !important;
   gap: 1rem !important;
   align-items: center;
   width: 100vw !important;
-
+  position: relative;
+  margin-bottom: 2rem;
 }
 
-.hr{
+.today-f {
   width: 100% !important;
 }
+*/
+/* 
+.hr{
+  position: absolute !important;
+  width: 100vw !important;
+  margin: auto !important;
+} */
 
-button{
+button {
   margin-left: auto !important;
 }
 
-#forecast{
+#forecast {
   display: flex;
   flex-direction: row !important;
   gap: 1rem;
@@ -164,7 +172,11 @@ button{
   margin: auto !important;
   width: 100%;
 }
-.weather-card{
+
+#today {
+  width: 100vw !important;
+}
+.weather-card {
   padding: 1rem;
   background-color: white;
   border-radius: 1rem;
@@ -209,5 +221,4 @@ button{
   .weather-data h2 {
     font-size: 1.35rem;
   }
-} 
-
+}

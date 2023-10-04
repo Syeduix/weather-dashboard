@@ -15,7 +15,6 @@ function populateForecast(forecastData) {
 
   let currentDate = new Date();
   let forecastDays = {};
-
   // Loop through the forecast data and organize it by day
   for (let day of forecastData.list) {
     let forecastDate = new Date(day.dt_txt);
@@ -45,7 +44,11 @@ function populateForecast(forecastData) {
         <p>Weather: ${weatherDescription}</p>
       `;
 
-    forecastSection.appendChild(card); // Append the card to the forecast section
+    // Append the card to the forecast section or to today section based on whether the
+    // forecast is for today or for any of the future days
+    if (dayjs(currentDate).format("dddd") === dayjs(date).format("dddd"))
+      document.getElementById("today").append(card);
+    else forecastSection.appendChild(card);
   }
 }
 
