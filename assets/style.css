@@ -1,6 +1,6 @@
-/* Import Google font - Open Sans */
+Import Google font - Open Sans
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap");
-* {
+ {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -132,6 +132,44 @@ h1 {
   margin: 5px 0 -12px 0;
 }
 
+.input-area{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+.input-group{
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 1rem !important;
+  align-items: center;
+  width: 100vw !important;
+
+}
+
+.hr{
+  width: 100% !important;
+}
+
+button{
+  margin-left: auto !important;
+}
+
+#forecast{
+  display: flex;
+  flex-direction: row !important;
+  gap: 1rem;
+  flex-wrap: wrap;
+  padding: 1rem;
+  margin: auto !important;
+  width: 100%;
+}
+.weather-card{
+  padding: 1rem;
+  background-color: white;
+  border-radius: 1rem;
+  width: auto;
+}
 @media (max-width: 1400px) {
   .weather-data .current-weather {
     padding: 20px;
@@ -171,4 +209,5 @@ h1 {
   .weather-data h2 {
     font-size: 1.35rem;
   }
-}
+} 
+
