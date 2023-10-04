@@ -16,3 +16,15 @@ Presented
 - The Temperature
 - The humidity
 - The wind speed
+
+## Screenshots
+
+![Screenshot of Deployed webpage](./assets/image/screenshot.jpg)
+
+## Deployed Link
+
+https://syeduix.github.io/weather-dashboard/
+
+## Link to GitHub
+
+https://github.com/Syeduix/weather-dashboard
